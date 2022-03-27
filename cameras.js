@@ -16,14 +16,5 @@ const cameras = {
             "flipVertically": false,
             "flipHorizontally": false
         }
-    },
-    "testing": {
-        "url": "http://camera.butovo.com/mjpg/video.mjpg",
-        "fps": 15,
-        "options": {
-            "angleRotation": 0,
-            "flipVertically": false,
-            "flipHorizontally": false
-        }
     }
 }
