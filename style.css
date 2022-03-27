@@ -65,6 +65,8 @@ a:visited {
   margin-bottom: 5px;
   text-align: center;
   width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .cameraButton.selected {
