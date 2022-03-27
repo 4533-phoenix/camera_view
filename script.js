@@ -135,7 +135,7 @@ Object.keys(cameras || {}).forEach(function(name, index) {
   optionElement.onclick = function() {
     setActiveCamera(name);
   };
-  optionElement.innerHTML = name.fromCamelCase();
+  optionElement.innerHTML = (((index + 1) <= 9) ? ("(" + parseInt(index + 1) + ") ") : "") + name.fromCamelCase();
   optionElement.id = name + "Btn";
   cameraSelector.appendChild(optionElement);
 });
@@ -165,6 +165,18 @@ activeCamera.addEventListener("load", function(event) {
 
 activeCamera.addEventListener("click", function(event) {
   window.open(cameras[event.target.id.slice(0, -3)].url, "_blank");
+});
+
+document.addEventListener("keydown", function (event) {
+  if (!isNaN(event.key)) {
+    let number = parseInt(event.key) - 1;
+    number = (number < 0) ? 9 : number;
+
+    let cameraName = Object.keys(cameras || {})[number];
+    if (!!cameraName) {
+      setActiveCamera(cameraName);
+    }
+  }
 });
 
 flipVertically.addEventListener("change", function (event) {
