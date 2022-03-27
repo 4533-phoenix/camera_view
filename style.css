@@ -43,7 +43,8 @@ a:visited {
 }
 
 #cameraSelector {
-  width: 50%;
+  width: 48%;
+  float: left;
 }
 
 #cameraSelector:first-child {
@@ -68,4 +69,9 @@ a:visited {
 
 .cameraButton.selected {
   background-color: red;
+}
+
+#cameraSettings {
+  width: 48%;
+  float: right
 }

@@ -1,9 +1,15 @@
 let cameraSelector = document.getElementById("cameraSelectorButtons");
+
 let cameraURL = document.getElementById("cameraURL");
 let cameraName = document.getElementById("cameraName");
 let cameraId = document.getElementById("cameraId");
 let cameraElementId = document.getElementById("cameraElementId");
 let cameraStatus = document.getElementById("cameraStatus");
+
+let flipVertically = document.getElementById("flipVerticallyCheckbox");
+let flipHorizontally = document.getElementById("flipHorizontallyCheckbox");
+let angleRotation = document.getElementById("angleRotationNumber");
+
 let activeCamera = document.getElementsByClassName("activeCamera")[0];
 let customOptions = {};
 
@@ -17,31 +23,44 @@ function parseActiveCameraOptions() {
   let name = activeCamera.id.slice(0, -3);
   let imageOptions = cameras[name]["options"];
 
-  activeCamera.removeAttribute("style");
-
   Object.entries(customOptions[name] || {}).forEach(function(customOption) {
     const [customOptionName, customOptionValue] = customOption;
     imageOptions[customOptionName] = customOptionValue;
   });
 
+  activeCamera.removeAttribute("style");
   Object.entries(imageOptions).forEach(function(imageOption) {
     const [imageOptionName, imageOptionValue] = imageOption;
 
     switch (imageOptionName) {
       case "angleRotation":
         activeCamera.style.transform += `rotate(${imageOptionValue}deg)`;
+        break;
       case "flipVertically":
         imageOptionValue
           ?
           (activeCamera.style.transform += "scaleX(-1)") :
           (activeCamera.style.transform += "scaleX(1)");
+          break;
       case "flipHorizontally":
         imageOptionValue
           ?
           (activeCamera.style.transform += "scaleY(-1)") :
           (activeCamera.style.transform += "scaleY(1)");
+        break;
     }
   });
+}
+
+function setCustomOption(key, value) {
+  let name = activeCamera.id.slice(0, -3);
+
+  if (!customOptions[name]) {
+    customOptions[name] = {}
+  }
+
+  customOptions[name][key] = value;
+  parseActiveCameraOptions();
 }
 
 function setActiveCamera(name) {
@@ -87,7 +106,7 @@ window.addEventListener("load", function(event) {
 });
 
 activeCamera.addEventListener("error", function(event) {
-  if (!activeCamera.src.endsWith("transparent.png")) {
+  if (!event.target.src.endsWith("transparent.png")) {
     cameraStatus.innerHTML = "Error";
     cameraStatus.style["background-color"] = "red";
     cameraStatus.style["color"] = "white";
@@ -97,7 +116,7 @@ activeCamera.addEventListener("error", function(event) {
 });
 
 activeCamera.addEventListener("load", function(event) {
-  if (!activeCamera.src.endsWith("transparent.png")) {
+  if (!event.target.src.endsWith("transparent.png")) {
     cameraStatus.innerHTML = "Online";
     cameraStatus.style["background-color"] = "green";
     cameraStatus.style["color"] = "white";
@@ -105,5 +124,17 @@ activeCamera.addEventListener("load", function(event) {
 });
 
 activeCamera.addEventListener("click", function(event) {
-  window.open(cameras[activeCamera.id.slice(0, -3)].url, "_blank");
+  window.open(cameras[event.target.id.slice(0, -3)].url, "_blank");
+});
+
+flipVertically.addEventListener("change", function (event) {
+  setCustomOption("flipVertically", event.target.checked);
+});
+
+flipHorizontally.addEventListener("change", function (event) {
+  setCustomOption("flipHorizontally", event.target.checked);
+});
+
+angleRotation.addEventListener("change", function (event) {
+  setCustomOption("angleRotation", event.target.value)
 });

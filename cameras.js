@@ -1,7 +1,6 @@
 const cameras = {
     "front": {
         "url": "http://wpilibpi.local:1181/stream.mjpg",
-        "fps": 15,
         "options": {
             "angleRotation": 0,
             "flipVertically": true,
@@ -10,7 +9,6 @@ const cameras = {
     },
     "limelight": {
         "url": "http://limelight.local:5800/",
-        "fps": 15,
         "options": {
             "angleRotation": 0,
             "flipVertically": false,
