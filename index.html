@@ -30,14 +30,18 @@
       </div>
       <div id="cameraSettings">
         <h1>Camera Settings:</h1>
-        <input type="checkbox" id="flipVerticallyCheckbox" name="flipVertically" />
-        <label for="flipVertically">Flip Vertically</label><br/>
-        <input type="checkbox" id="flipHorizontallyCheckbox" name="flipHorizontally" />
-        <label for="flipHorizontally">Flip Horizontally</label><br/>
-        <input type="number" id="angleRotationNumber" name="angleRotation" value="0" min="0" max="360" />
-        <label for="angleRotation">Angle</label><br/>
-        <input type="button" id="refreshCameraButton" name="refreshCamera" value="R"/>
-        <label for="refreshCamera">Refresh</label><br/>
+        <div id="cameraOptions">
+          <input class="optionInput" type="checkbox" id="flipVerticallyCheckbox" name="flipVertically" />
+          <label for="flipVertically">Flip Vertically</label><br/>
+          <input class="optionInput" type="checkbox" id="flipHorizontallyCheckbox" name="flipHorizontally" />
+          <label for="flipHorizontally">Flip Horizontally</label><br/>
+          <input class="optionInput" type="number" id="angleRotationNumber" name="angleRotation" value="0" min="0" max="360" />
+          <label for="angleRotation">Angle</label><br/>
+          <input class="optionInput" type="button" id="refreshCameraButton" name="refreshCamera" value="R"/>
+          <label for="refreshCamera">Refresh</label><br/>
+          <input class="optionInput" type="button" id="resetOptionsButton" name="resetOptions" value="R"/>
+          <label for="resetOptions">Reset</label><br/>
+        </div>
       </div>
     </div>
     <script src="cameras.js"></script>

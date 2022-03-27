@@ -10,6 +10,7 @@ let flipVertically = document.getElementById("flipVerticallyCheckbox");
 let flipHorizontally = document.getElementById("flipHorizontallyCheckbox");
 let angleRotation = document.getElementById("angleRotationNumber");
 let refreshCamera = document.getElementById("refreshCameraButton");
+let resetOptions = document.getElementById("resetOptionsButton");
 
 let activeCamera = document.getElementsByClassName("activeCamera")[0];
 let storage = window.localStorage;
@@ -180,4 +181,10 @@ angleRotation.addEventListener("change", function (event) {
 
 refreshCamera.addEventListener("click", function (event) {
   setActiveCamera(activeCamera.id.slice(0, -3), true);
+});
+
+resetOptions.addEventListener("click", function (event) {
+  let name = activeCamera.id.slice(0, -3);
+  delete customOptions[name];
+  parseActiveCameraOptions();
 });

@@ -77,3 +77,16 @@ a:visited {
   width: 48%;
   float: right
 }
+
+#cameraOptions > * {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#cameraOptions:first-child {
+  margin-top: auto;
+}
+
+#cameraOptions:last-child {
+  margin-bottom: auto;
+}
