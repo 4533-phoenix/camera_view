@@ -12,6 +12,7 @@ let angleRotation = document.getElementById("angleRotationNumber");
 let refreshCamera = document.getElementById("refreshCameraButton");
 
 let activeCamera = document.getElementsByClassName("activeCamera")[0];
+let storage = window.localStorage;
 let customOptions = {};
 
 String.prototype.fromCamelCase = function() {
@@ -20,15 +21,48 @@ String.prototype.fromCamelCase = function() {
   });
 };
 
+function fixCustomOptions() {
+  Object.entries(cameras || {}).forEach(function (camera) {
+    const [cameraName, cameraSettings] = camera;
+    if (!customOptions[cameraName]) {
+      return;
+    } else if (Object.keys(customOptions[cameraName]).length == 0) {
+      delete customOptions[cameraName];
+      return;
+    }
+
+    Object.entries(cameraSettings.options || {}).forEach(function (option) {
+      const [optionName, optionValue] = option;
+      if (customOptions[cameraName][optionName] == optionValue) {
+        delete customOptions[cameraName][optionName];
+      }
+    });
+  });
+}
+
+function saveCustomOptions() {
+  storage.setItem("customSettings", JSON.stringify(customOptions));
+}
+
+function loadCustomOptions() {
+  if (!storage.getItem("customSettings")) {
+    storage.setItem("customSettings", "{}");
+  }
+
+  customOptions = JSON.parse(storage.getItem("customSettings"));
+}
+
 function parseActiveCameraOptions() {
   let name = activeCamera.id.slice(0, -3);
-  let imageOptions = cameras[name]["options"];
+  let imageOptions = {...cameras[name]["options"]};
 
   Object.entries(customOptions[name] || {}).forEach(function(customOption) {
     const [customOptionName, customOptionValue] = customOption;
     imageOptions[customOptionName] = customOptionValue;
   });
 
+  fixCustomOptions();
+  saveCustomOptions();
   activeCamera.removeAttribute("style");
   Object.entries(imageOptions).forEach(function(imageOption) {
     const [imageOptionName, imageOptionValue] = imageOption;
@@ -106,6 +140,7 @@ Object.keys(cameras || {}).forEach(function(name, index) {
 });
 
 window.addEventListener("load", function(event) {
+  loadCustomOptions();
   setActiveCamera(Object.keys(cameras)[0]);
 });
 
