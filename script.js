@@ -176,6 +176,12 @@ document.addEventListener("keydown", function (event) {
     if (!!cameraName) {
       setActiveCamera(cameraName);
     }
+  } else {
+    switch (event.key.toLowerCase()) {
+      case "r":
+        setActiveCamera(activeCamera.id.slice(0, -3), true);
+        break;
+    }
   }
 });
 
