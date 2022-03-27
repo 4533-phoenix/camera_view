@@ -31,15 +31,16 @@
       <div id="cameraSettings">
         <h1>Camera Settings:</h1>
         <input type="checkbox" id="flipVerticallyCheckbox" name="flipVertically" />
-        <label for="flipVertically">Flip Vertically</label><br>
+        <label for="flipVertically">Flip Vertically</label><br/>
         <input type="checkbox" id="flipHorizontallyCheckbox" name="flipHorizontally" />
-        <label for="flipHorizontally">Flip Horizontally</label><br>
-        <input type="number" id="angleRotationNumber" name="angleRotation" value="0" min="0" max="360"/>
-        <label for="angleRotation">Angle</label><br>
+        <label for="flipHorizontally">Flip Horizontally</label><br/>
+        <input type="number" id="angleRotationNumber" name="angleRotation" value="0" min="0" max="360" />
+        <label for="angleRotation">Angle</label><br/>
+        <input type="button" id="refreshCameraButton" name="refreshCamera" value="R"/>
+        <label for="refreshCamera">Refresh</label><br/>
       </div>
     </div>
     <script src="cameras.js"></script>
-    <script src="stream.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

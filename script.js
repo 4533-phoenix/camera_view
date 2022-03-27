@@ -9,6 +9,7 @@ let cameraStatus = document.getElementById("cameraStatus");
 let flipVertically = document.getElementById("flipVerticallyCheckbox");
 let flipHorizontally = document.getElementById("flipHorizontallyCheckbox");
 let angleRotation = document.getElementById("angleRotationNumber");
+let refreshCamera = document.getElementById("refreshCameraButton");
 
 let activeCamera = document.getElementsByClassName("activeCamera")[0];
 let customOptions = {};
@@ -35,18 +36,21 @@ function parseActiveCameraOptions() {
     switch (imageOptionName) {
       case "angleRotation":
         activeCamera.style.transform += `rotate(${imageOptionValue}deg)`;
+        angleRotation.value = imageOptionValue;
         break;
       case "flipVertically":
         imageOptionValue
           ?
           (activeCamera.style.transform += "scaleX(-1)") :
           (activeCamera.style.transform += "scaleX(1)");
-          break;
+        flipVertically.checked = imageOptionValue;
+        break;
       case "flipHorizontally":
         imageOptionValue
           ?
           (activeCamera.style.transform += "scaleY(-1)") :
           (activeCamera.style.transform += "scaleY(1)");
+        flipHorizontally.checked = imageOptionValue;
         break;
     }
   });
@@ -63,8 +67,8 @@ function setCustomOption(key, value) {
   parseActiveCameraOptions();
 }
 
-function setActiveCamera(name) {
-  if (activeCamera.id == name) {
+function setActiveCamera(name, overideActive) {
+  if (activeCamera.id == name && !overideActive) {
     return;
   }
   const options = cameras[name];
@@ -137,4 +141,8 @@ flipHorizontally.addEventListener("change", function (event) {
 
 angleRotation.addEventListener("change", function (event) {
   setCustomOption("angleRotation", event.target.value)
+});
+
+refreshCamera.addEventListener("click", function (event) {
+  setActiveCamera(activeCamera.id.slice(0, -3), true);
 });
