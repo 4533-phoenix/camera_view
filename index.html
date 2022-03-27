@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Cameras</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="A simple camera viewer." />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <body>
+    <div id="cameraPanel">
+      <h1>Camera:</h1>
+      <img class="activeCamera" width="100%" src="" />
+      <br/><br/>
+      <p class="cameraDetails">Camera URL: <a id="cameraURL"></a></p>
+      <p class="cameraDetails">Camera Name: <span id="cameraName"></span></p>
+      <p class="cameraDetails">Camera Id: <span id="cameraId"></span></p>
+      <p class="cameraDetails">Camera Element Id: <span id="cameraElementId"></span></p>
+      <p class="cameraDetails">Camera Status: <span id="cameraStatus"></span></p>
+    </div>
+    <div id="controlPanel">
+      <div id="cameraSelector">
+        <h1>Select Camera:</h1>
+        <div id="cameraSelectorButtons"></div>
+      </div>
+    </div>
+    <script src="cameras.js"></script>
+    <script src="stream.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

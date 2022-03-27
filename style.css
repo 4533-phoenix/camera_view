@@ -1,0 +1,71 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+a {
+  color: red;
+}
+
+a:visited {
+  color: darkred;
+}
+
+#cameraPanel {
+  position: absolute;
+  left: 0%;
+  width: 49%;
+}
+
+.cameraDetails {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.cameraDetails:first-child {
+  margin-top: auto;
+}
+
+.cameraDetails:last-child {
+  margin-bottom: auto;
+}
+
+#controlPanel {
+  position: absolute;
+  right: 0%;
+  width: 49%;
+}
+
+#activeCamera {
+  width: 100%;
+}
+
+#cameraSelector {
+  width: 50%;
+}
+
+#cameraSelector:first-child {
+  margin-top: 0px;
+}
+
+#cameraSelector:last-child {
+  margin-bottom: 0px;
+}
+
+.cameraButton {
+  user-select: none;
+  border-radius: 10px;
+  background-color: grey;
+  cursor: pointer;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.cameraButton.selected {
+  background-color: red;
+}
