@@ -3,8 +3,8 @@ const cameras = {
         "url": "http://wpilibpi.local:1181/stream.mjpg",
         "options": {
             "angleRotation": 0,
-            "flipVertically": true,
-            "flipHorizontally": false
+            "flipVertically": false,
+            "flipHorizontally": true
         }
     },
     "limelight": {
